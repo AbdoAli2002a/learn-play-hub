@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConvexConcaveRouteImport } from './routes/convex-concave'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as InteriorAnglesRouteImport } from './routes/interior-angles'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +29,44 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InteriorAnglesRoute = InteriorAnglesRouteImport.update({
+  id: '/interior-angles',
+  path: '/interior-angles',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
+  '/interior-angles': typeof InteriorAnglesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
+  '/interior-angles': typeof InteriorAnglesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
+  '/interior-angles': typeof InteriorAnglesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/convex-concave' | '/gallery'
+  fullPaths: '/' | '/convex-concave' | '/gallery' | '/interior-angles'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/convex-concave' | '/gallery'
-  id: '__root__' | '/' | '/convex-concave' | '/gallery'
+  to: '/' | '/convex-concave' | '/gallery' | '/interior-angles'
+  id: '__root__' | '/' | '/convex-concave' | '/gallery' | '/interior-angles'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConvexConcaveRoute: typeof ConvexConcaveRoute
   GalleryRoute: typeof GalleryRoute
+  InteriorAnglesRoute: typeof InteriorAnglesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +92,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/interior-angles': {
+      id: '/interior-angles'
+      path: '/interior-angles'
+      fullPath: '/interior-angles'
+      preLoaderRoute: typeof InteriorAnglesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConvexConcaveRoute: ConvexConcaveRoute,
   GalleryRoute: GalleryRoute,
+  InteriorAnglesRoute: InteriorAnglesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
