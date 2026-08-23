@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConvexConcaveRouteImport } from './routes/convex-concave'
 import { Route as GalleryRouteImport } from './routes/gallery'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConvexConcaveRoute = ConvexConcaveRouteImport.update({
+  id: '/convex-concave',
+  path: '/convex-concave',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -25,27 +31,31 @@ const GalleryRoute = GalleryRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/gallery'
+  fullPaths: '/' | '/convex-concave' | '/gallery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery'
-  id: '__root__' | '/' | '/gallery'
+  to: '/' | '/convex-concave' | '/gallery'
+  id: '__root__' | '/' | '/convex-concave' | '/gallery'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConvexConcaveRoute: typeof ConvexConcaveRoute
   GalleryRoute: typeof GalleryRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/convex-concave': {
+      id: '/convex-concave'
+      path: '/convex-concave'
+      fullPath: '/convex-concave'
+      preLoaderRoute: typeof ConvexConcaveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConvexConcaveRoute: ConvexConcaveRoute,
   GalleryRoute: GalleryRoute,
 }
 export const routeTree = rootRouteImport
