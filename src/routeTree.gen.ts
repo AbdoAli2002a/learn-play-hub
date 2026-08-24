@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConvexConcaveRouteImport } from './routes/convex-concave'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as InteriorAnglesRouteImport } from './routes/interior-angles'
+import { Route as RegularPolygonsRouteImport } from './routes/regular-polygons'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const InteriorAnglesRoute = InteriorAnglesRouteImport.update({
   path: '/interior-angles',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RegularPolygonsRoute = RegularPolygonsRouteImport.update({
+  id: '/regular-polygons',
+  path: '/regular-polygons',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
+  '/regular-polygons': typeof RegularPolygonsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
+  '/regular-polygons': typeof RegularPolygonsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,30 @@ export interface FileRoutesById {
   '/convex-concave': typeof ConvexConcaveRoute
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
+  '/regular-polygons': typeof RegularPolygonsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/convex-concave' | '/gallery' | '/interior-angles'
+  fullPaths:
+    | '/'
+    | '/convex-concave'
+    | '/gallery'
+    | '/interior-angles'
+    | '/regular-polygons'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/convex-concave' | '/gallery' | '/interior-angles'
-  id: '__root__' | '/' | '/convex-concave' | '/gallery' | '/interior-angles'
+  to:
+    | '/'
+    | '/convex-concave'
+    | '/gallery'
+    | '/interior-angles'
+    | '/regular-polygons'
+  id:
+    | '__root__'
+    | '/'
+    | '/convex-concave'
+    | '/gallery'
+    | '/interior-angles'
+    | '/regular-polygons'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +92,7 @@ export interface RootRouteChildren {
   ConvexConcaveRoute: typeof ConvexConcaveRoute
   GalleryRoute: typeof GalleryRoute
   InteriorAnglesRoute: typeof InteriorAnglesRoute
+  RegularPolygonsRoute: typeof RegularPolygonsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InteriorAnglesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/regular-polygons': {
+      id: '/regular-polygons'
+      path: '/regular-polygons'
+      fullPath: '/regular-polygons'
+      preLoaderRoute: typeof RegularPolygonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +140,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConvexConcaveRoute: ConvexConcaveRoute,
   GalleryRoute: GalleryRoute,
   InteriorAnglesRoute: InteriorAnglesRoute,
+  RegularPolygonsRoute: RegularPolygonsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
