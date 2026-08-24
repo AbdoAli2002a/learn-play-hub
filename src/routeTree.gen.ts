@@ -14,6 +14,7 @@ import { Route as ConvexConcaveRouteImport } from './routes/convex-concave'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as InteriorAnglesRouteImport } from './routes/interior-angles'
 import { Route as RegularPolygonsRouteImport } from './routes/regular-polygons'
+import { Route as SymmetryRouteImport } from './routes/symmetry'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +41,11 @@ const RegularPolygonsRoute = RegularPolygonsRouteImport.update({
   path: '/regular-polygons',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SymmetryRoute = SymmetryRouteImport.update({
+  id: '/symmetry',
+  path: '/symmetry',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
   '/regular-polygons': typeof RegularPolygonsRoute
+  '/symmetry': typeof SymmetryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
   '/regular-polygons': typeof RegularPolygonsRoute
+  '/symmetry': typeof SymmetryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,6 +70,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
   '/regular-polygons': typeof RegularPolygonsRoute
+  '/symmetry': typeof SymmetryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -71,6 +80,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/interior-angles'
     | '/regular-polygons'
+    | '/symmetry'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -78,6 +88,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/interior-angles'
     | '/regular-polygons'
+    | '/symmetry'
   id:
     | '__root__'
     | '/'
@@ -85,6 +96,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/interior-angles'
     | '/regular-polygons'
+    | '/symmetry'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -93,6 +105,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   InteriorAnglesRoute: typeof InteriorAnglesRoute
   RegularPolygonsRoute: typeof RegularPolygonsRoute
+  SymmetryRoute: typeof SymmetryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegularPolygonsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/symmetry': {
+      id: '/symmetry'
+      path: '/symmetry'
+      fullPath: '/symmetry'
+      preLoaderRoute: typeof SymmetryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -141,6 +161,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   InteriorAnglesRoute: InteriorAnglesRoute,
   RegularPolygonsRoute: RegularPolygonsRoute,
+  SymmetryRoute: SymmetryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
