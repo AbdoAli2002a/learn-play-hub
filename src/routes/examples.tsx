@@ -51,12 +51,12 @@ const solved = [
     ],
   },
   {
-    q: "ABCDEF is a regular hexagon with an equilateral triangle attached on one side. Find m(∠H).",
+    q: "ABCDEF is a regular hexagon; a regular octagon shares the side BC. Find the measure of the angle between them at B.",
     steps: [
       "One interior angle of a regular hexagon = 720° ÷ 6 = 120°",
-      "The attached triangle contributes 60° at the shared vertex.",
-      "Angles at a point sum to 360°: m(∠H) = 360° − 120° − 60° = 180° − 0°… careful:",
-      "m(∠H) = 360° − (120° + 60° + 60°) = 120°",
+      "One interior angle of a regular octagon = 1,080° ÷ 8 = 135°",
+      "The three angles at the point B complete a full turn: 120° + 135° + m(∠ABC) = 360°",
+      "m(∠ABC) = 360° − 255° = 105°",
     ],
   },
 ];

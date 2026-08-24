@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConvexConcaveRouteImport } from './routes/convex-concave'
+import { Route as ExamplesRouteImport } from './routes/examples'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as InteriorAnglesRouteImport } from './routes/interior-angles'
 import { Route as RegularPolygonsRouteImport } from './routes/regular-polygons'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const ConvexConcaveRoute = ConvexConcaveRouteImport.update({
   id: '/convex-concave',
   path: '/convex-concave',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesRoute = ExamplesRouteImport.update({
+  id: '/examples',
+  path: '/examples',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -50,6 +56,7 @@ const SymmetryRoute = SymmetryRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
+  '/examples': typeof ExamplesRoute
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
   '/regular-polygons': typeof RegularPolygonsRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
+  '/examples': typeof ExamplesRoute
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
   '/regular-polygons': typeof RegularPolygonsRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/convex-concave': typeof ConvexConcaveRoute
+  '/examples': typeof ExamplesRoute
   '/gallery': typeof GalleryRoute
   '/interior-angles': typeof InteriorAnglesRoute
   '/regular-polygons': typeof RegularPolygonsRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/convex-concave'
+    | '/examples'
     | '/gallery'
     | '/interior-angles'
     | '/regular-polygons'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/convex-concave'
+    | '/examples'
     | '/gallery'
     | '/interior-angles'
     | '/regular-polygons'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/convex-concave'
+    | '/examples'
     | '/gallery'
     | '/interior-angles'
     | '/regular-polygons'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConvexConcaveRoute: typeof ConvexConcaveRoute
+  ExamplesRoute: typeof ExamplesRoute
   GalleryRoute: typeof GalleryRoute
   InteriorAnglesRoute: typeof InteriorAnglesRoute
   RegularPolygonsRoute: typeof RegularPolygonsRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/convex-concave'
       fullPath: '/convex-concave'
       preLoaderRoute: typeof ConvexConcaveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples': {
+      id: '/examples'
+      path: '/examples'
+      fullPath: '/examples'
+      preLoaderRoute: typeof ExamplesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConvexConcaveRoute: ConvexConcaveRoute,
+  ExamplesRoute: ExamplesRoute,
   GalleryRoute: GalleryRoute,
   InteriorAnglesRoute: InteriorAnglesRoute,
   RegularPolygonsRoute: RegularPolygonsRoute,
