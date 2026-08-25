@@ -12,10 +12,10 @@ const toPath = (pts: Pt[]) => pts.map(([x, y]) => `${x.toFixed(2)},${y.toFixed(2
 
 type ShapeProps = {
   points: Pt[];
-  className?: string;
-  labels?: string[];
-  diagonalsFrom?: number;
-  symmetryAxes?: [Pt, Pt][];
+  className?: string | undefined;
+  labels?: string[] | undefined;
+  diagonalsFrom?: number | undefined;
+  symmetryAxes?: [Pt, Pt][] | undefined;
   fill?: "primary" | "accent" | "muted";
   title: string;
 };
@@ -102,8 +102,8 @@ export function RegularShape({
 }: {
   sides: number;
   title: string;
-  fill?: "primary" | "accent" | "muted";
-  className?: string;
+  fill?: "primary" | "accent" | "muted" | undefined;
+  className?: string | undefined;
 }) {
   return (
     <ShapeFigure points={regularPoints(sides)} title={title} fill={fill} className={className} />
