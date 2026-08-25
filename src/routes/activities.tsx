@@ -200,7 +200,7 @@ const sortItems: SortItem[] = [
   },
   {
     id: "star",
-    label: "Star-cut quadrilateral",
+    label: "Star-shaped octagon",
     concave: true,
     render: () => (
       <ShapeFigure
